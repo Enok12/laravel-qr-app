@@ -22,3 +22,19 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class);
+
+
+Route::resource('roles', App\Http\Controllers\RoleController::class);
+
+
+Route::resource('transactions', App\Http\Controllers\TransactionController::class);
+
+
+Route::resource('users', App\Http\Controllers\UserController::class);
