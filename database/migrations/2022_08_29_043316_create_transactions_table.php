@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->longText('message')->nullable()->default('initiated');
             $table->float('amount',10,4);
             $table->string('status');
+            $table->softDeletes();;
             $table->timestamps();
         });
     }
