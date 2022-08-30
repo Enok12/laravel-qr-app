@@ -1,13 +1,11 @@
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
-</div>
+
+    {!! Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control']) !!}
+
 
 <!-- Website Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('website', 'Website:') !!}
-    {!! Form::text('website', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::text('website', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'placeholder'=> 'https://examplme.com']) !!}
 </div>
 
 <!-- Company Name Field -->
@@ -35,14 +33,14 @@
 </div>
 
 <!-- Qrcode Path Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('qrcode_path', 'Qrcode Path:') !!}
     {!! Form::text('qrcode_path', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+</div> --}}
 
 <!-- Amount Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('amount', 'Amount:') !!}
+    {!! Form::label('amount', 'Amount(Rs):') !!}
     {!! Form::number('amount', null, ['class' => 'form-control']) !!}
 </div>
 
