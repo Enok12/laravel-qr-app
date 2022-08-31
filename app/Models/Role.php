@@ -29,7 +29,7 @@ class Role extends Model
 
 
     public $fillable = [
-        
+        'name',
     ];
 
     /**
@@ -38,7 +38,8 @@ class Role extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer'
+        'id' => 'integer',
+        'name' => 'string',
     ];
 
     /**
@@ -48,7 +49,8 @@ class Role extends Model
      */
     public static $rules = [
         'created_at' => 'nullable',
-        'updated_at' => 'nullable'
+        'updated_at' => 'nullable',
+        'name' => 'nullable|string|max:255',
     ];
 
     
