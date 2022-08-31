@@ -9,6 +9,9 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use QRCode;
+use Auth;
+use App\Models\Qrcode as QrcodeModel;
 
 class QrcodeController extends AppBaseController
 {
@@ -56,11 +59,26 @@ class QrcodeController extends AppBaseController
     {
         $input = $request->all();
 
+        //Save to the database
         $qrcode = $this->qrcodeRepository->create($input);
 
-        Flash::success('Qrcode saved successfully.');
+        $file = 'generated_qrcodes/'.$qrcode->id.'.png';
 
-        return redirect(route('qrcodes.index'));
+         QRCode::text("YOU ARE GAY")
+        ->setSize(8)
+        ->setMargin(2)
+        ->setOutfile($file)
+        ->png();
+
+        $input['qrcode_path'] = $file;
+
+            //Update
+            QrcodeModel::where('id',$qrcode->id)
+            ->update(['qrcode_path' => $input['qrcode_path']]);
+           
+            // Flash::success('Qrcode saved successfully.');
+
+        return redirect(route('qrcodes.show',['qrcode' => $qrcode]));
     }
 
     /**
