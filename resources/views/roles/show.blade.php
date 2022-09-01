@@ -4,15 +4,18 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <h1>Role Details</h1>
                 </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('roles.index') }}">
-                        Back
-                    </a>
+               
+                <div class="col-md-6 pull-right">
+                    <a href="{{ route('roles.edit', [$role->id]) }}"
+                        class='btn btn-primary pull-right'>
+                         Edit Role
+                     </a>
                 </div>
+                    
+
             </div>
         </div>
     </section>
