@@ -1,19 +1,28 @@
+<!-- Qr Code Id Field -->
+<div class="col-sm-12">
+    {!! Form::label('qr_code_id', 'Product Name') !!}
+
+    <p>
+        {{-- Check out the Transaciton Model and QrCodel Model the relationships --}}
+        <a href="/qrcodes/{{ $transaction->qrcode['id'] }}">
+            <b>
+                {{ $transaction->qrcode['product_name'] }}
+            </b>
+            
+        </a>
+    </p>
+</div>
+
 <!-- User Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $transaction->user_id }}</p>
+    {!! Form::label('user_id', 'Buyer Name:') !!}
+    <p>{{ $transaction->user['name'] }} | {{  $transaction->user['email'] }}</p>
 </div>
 
 <!-- Qr Code Owner Field -->
 <div class="col-sm-12">
-    {!! Form::label('qr_code_owner', 'Qr Code Owner:') !!}
+    {!! Form::label('qr_code_owner', 'Qr Code Owner Name:') !!}
     <p>{{ $transaction->qr_code_owner }}</p>
-</div>
-
-<!-- Qr Code Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('qr_code_id', 'Qr Code Id:') !!}
-    <p>{{ $transaction->qr_code_id }}</p>
 </div>
 
 <!-- Payment Method Field -->

@@ -78,5 +78,25 @@ class Transaction extends Model
         'updated_at' => 'nullable'
     ];
 
+    //Get the qrcode that owns the transaction
+    // public function qrcode(){
+    //     return $this->belongsTo('App\Models\Qrcode');
+    // }
+
+    /**
+     * Get the qrcodes that owns the Transaction
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function qrcode()
+    {
+        return $this->belongsTo(Qrcode::class, 'qr_code_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     
 }

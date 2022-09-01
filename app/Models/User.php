@@ -75,5 +75,10 @@ class User extends Authenticatable
         'updated_at' => 'nullable'
     ];
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     
 }
