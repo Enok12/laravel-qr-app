@@ -98,5 +98,10 @@ class Transaction extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function qrcode_owner()
+    {
+        return $this->belongsTo(User::class,'qr_code_owner','id');
+    }
+
     
 }

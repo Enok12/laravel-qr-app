@@ -7,12 +7,15 @@
                 <div class="col-sm-6">
                     <h1>Transactions</h1>
                 </div>
-                <div class="col-sm-6">
+                {{-- Noone should be able to create new transactions manually --}}
+
+                {{-- <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('transactions.create') }}">
                         Add New
                     </a>
-                </div>
+                </div> --}}
+                
             </div>
         </div>
     </section>

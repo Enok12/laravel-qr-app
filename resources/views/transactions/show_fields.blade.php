@@ -13,16 +13,24 @@
     </p>
 </div>
 
+<!-- Amount Field -->
+<div class="col-sm-12">
+    {!! Form::label('amount', 'Amount:') !!}
+    <p>{{ $transaction->amount }}</p>
+</div>
+
 <!-- User Id Field -->
 <div class="col-sm-12">
     {!! Form::label('user_id', 'Buyer Name:') !!}
-    <p>{{ $transaction->user['name'] }} | {{  $transaction->user['email'] }}</p>
+    <p>
+        <a href="/users/{!! $transaction->user['id']!!}">
+        {{ $transaction->user['name'] }} | {{  $transaction->user['email'] }}</a></p>
 </div>
 
 <!-- Qr Code Owner Field -->
 <div class="col-sm-12">
     {!! Form::label('qr_code_owner', 'Qr Code Owner Name:') !!}
-    <p>{{ $transaction->qr_code_owner }}</p>
+    <p><a href="/users/{!! $transaction->user['id']!!}">{{ $transaction->qrcode_owner['name'] }}</a></p>
 </div>
 
 <!-- Payment Method Field -->
@@ -37,11 +45,7 @@
     <p>{{ $transaction->message }}</p>
 </div>
 
-<!-- Amount Field -->
-<div class="col-sm-12">
-    {!! Form::label('amount', 'Amount:') !!}
-    <p>{{ $transaction->amount }}</p>
-</div>
+
 
 <!-- Status Field -->
 <div class="col-sm-12">
