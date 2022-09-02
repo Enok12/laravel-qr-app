@@ -7,6 +7,20 @@
     </a>
     <div class="sidebar">
         <nav class="mt-2">
+            <div class="text-white text-center">
+                <p>{{ Auth::user()->name }}</p>
+                <a href=""><i class="fa fa-circle text-success"></i> 
+                    @if(Auth::user()->role_id == 1)
+                        Admin
+                    @elseif(Auth::user()->role_id == 2)
+                        Moderator
+                    @elseif(Auth::user()->role_id == 3)
+                        Webmaster
+                    @elseif(Auth::user()->role_id == 4)
+                        Buyer
+                    @endif
+                </a>
+            </div>
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @include('layouts.menu')
             </ul>
