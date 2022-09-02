@@ -80,5 +80,10 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
     
 }
