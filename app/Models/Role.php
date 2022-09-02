@@ -53,5 +53,10 @@ class Role extends Model
         'name' => 'nullable|string|max:255',
     ];
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
     
 }

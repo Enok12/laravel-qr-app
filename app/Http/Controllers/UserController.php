@@ -9,6 +9,9 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends AppBaseController
 {
@@ -93,6 +96,7 @@ class UserController extends AppBaseController
     public function edit($id)
     {
         $user = $this->userRepository->find($id);
+        
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -100,7 +104,11 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        $roles = Role::all();
+
+        return view('users.edit')
+        ->with('user', $user)
+        ->with('roles', $roles);
     }
 
     /**
@@ -121,7 +129,12 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        $user = $this->userRepository->update($request->all(), $id);
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }
+        // Hash::make($data['password'])
+        $user = $this->userRepository->update($input, $id);
 
         Flash::success('User updated successfully.');
 
