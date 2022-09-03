@@ -33,16 +33,17 @@ Route::group(['middleware' => 'auth'],function(){
 Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class);
 Route::resource('transactions', App\Http\Controllers\TransactionController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('accounts', App\Http\Controllers\AccountController::class);
+Route::resource('accountHistories', App\Http\Controllers\AccountHistoryController::class);
 
 //Only Moderators and Admins
 Route::group(['middleware' => 'checkmoderator'],function(){
     Route::get('/users',[App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 });
 
-
-
-
 //Only Admins
 Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('checkadmin');
 
 });
+
+
