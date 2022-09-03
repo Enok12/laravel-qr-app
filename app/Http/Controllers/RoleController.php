@@ -80,7 +80,12 @@ class RoleController extends AppBaseController
             return redirect(route('roles.index'));
         }
 
-        return view('roles.show')->with('role', $role);
+        //Retrieves Users according to user Level Refer Role Model for the relationship
+        $users = $role->users;
+
+        return view('roles.show')
+        ->with('role', $role)
+        ->with('users', $users);
     }
 
     /**

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-6">
-                    <h1>Role Details</h1>
+                    <h1>Role : {{ $role->name }}</h1>
                 </div>
                
                 <div class="col-md-6 pull-right">
