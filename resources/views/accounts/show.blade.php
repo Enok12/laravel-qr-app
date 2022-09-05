@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Account Details</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('accounts.index') }}">
-                        Back
-                    </a>
+                    <h1>Account : {{ $account->id }}
+                    <small>
+                        @if($account->applied_for_payout == 1)
+                            Payout Request pending
+                        @endif
+                    </small>
+                    </h1>
                 </div>
             </div>
         </div>
