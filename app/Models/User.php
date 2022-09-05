@@ -96,5 +96,10 @@ class User extends Authenticatable
 
     }
 
+    public function account_histories()
+    {
+        return $this->hasMany(AccountHistory::class);
+    }
+
     
 }

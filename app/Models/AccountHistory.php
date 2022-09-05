@@ -63,5 +63,11 @@ class AccountHistory extends Model
         'updated_at' => 'nullable'
     ];
 
+     //Get account associated with the account history
+     public function user(){
+        return $this->hasOne(Account::class);
+
+    }
+
     
 }
