@@ -90,5 +90,11 @@ class User extends Authenticatable
         return $this->hasMany(Qrcode::class);
     }
 
+    //Get account associated with the user
+    public function user(){
+        return $this->hasOne(Account::class);
+
+    }
+
     
 }

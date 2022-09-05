@@ -1,9 +1,4 @@
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
-</div>
-
+@if(Auth::user()->role_id == 1)
 <!-- Balance Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('balance', 'Balance:') !!}
@@ -22,6 +17,13 @@
     {!! Form::number('total_debit', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Paid Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('paid', 'Paid:') !!}
+    {!! Form::text('paid', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+</div>
+
+@endif
 <!-- Withdrawal Method Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('withdrawal_method', 'Withdrawal Method:') !!}
@@ -51,6 +53,7 @@
     {!! Form::label('bank_account', 'Bank Account:') !!}
     {!! Form::text('bank_account', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
+
 
 <!-- Country Field -->
 <div class="form-group col-sm-6">

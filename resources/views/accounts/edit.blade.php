@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Edit Account</h1>
+                    <h1>Account : <a href="/users/{{ $account->user['email'] }}">{{ $account->user['email'] }}</a> </h1>
                 </div>
             </div>
         </div>
@@ -27,7 +27,6 @@
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('accounts.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

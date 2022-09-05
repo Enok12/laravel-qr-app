@@ -107,5 +107,11 @@ class Account extends Model
         'updated_at' => 'nullable'
     ];
 
+    //Get user associated with the account
+    public function user(){
+        return $this->belongsTo(User::class);
+
+    }
+
     
 }
