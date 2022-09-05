@@ -26,6 +26,10 @@ class AccountRepository extends BaseRepository
         'bank_name',
         'bank_branch',
         'bank_account',
+        'applied_for_payout',
+        'paid',
+        'last_date_applied',
+        'last_date_paid',
         'country',
         'other_details'
     ];

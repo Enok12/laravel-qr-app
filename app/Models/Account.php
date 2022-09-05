@@ -20,6 +20,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $bank_name
  * @property string $bank_branch
  * @property string $bank_account
+ * @property string $applied_for_payout
+ * @property string $paid
+ * @property string $last_date_applied
+ * @property string $last_date_paid
  * @property string $country
  * @property string $other_details
  */
@@ -49,6 +53,10 @@ class Account extends Model
         'bank_name',
         'bank_branch',
         'bank_account',
+        'applied_for_payout',
+        'paid',
+        'last_date_applied',
+        'last_date_paid',
         'country',
         'other_details'
     ];
@@ -69,6 +77,10 @@ class Account extends Model
         'bank_name' => 'string',
         'bank_branch' => 'string',
         'bank_account' => 'string',
+        'applied_for_payout' => 'string',
+        'paid' => 'integer',
+        'last_date_applied' => 'string',
+        'last_date_paid' => 'string',
         'country' => 'string',
         'other_details' => 'string'
     ];
