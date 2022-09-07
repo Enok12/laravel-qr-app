@@ -33,7 +33,10 @@ Route::group(['middleware' => 'auth'],function(){
 Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class);
 Route::resource('transactions', App\Http\Controllers\TransactionController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
-Route::resource('accounts', App\Http\Controllers\AccountController::class);
+Route::resource('accounts', App\Http\Controllers\AccountController::class)->except(['show']);
+
+Route::get('/accounts/show/{id?}',[App\Http\Controllers\AccountController::class, 'show'])->name('accounts.show');
+
 Route::resource('accountHistories', App\Http\Controllers\AccountHistoryController::class);
 
 //Only Moderators and Admins

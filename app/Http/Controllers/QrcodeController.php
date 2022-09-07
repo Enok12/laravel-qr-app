@@ -36,7 +36,7 @@ class QrcodeController extends AppBaseController
         if(Auth::user()->role_id < 3){
             $qrcodes = $this->qrcodeRepository->all();
         }else{
-            $qrcodes = QrcodeModel::where('user_id',Auth::user()->id);
+            $qrcodes = QrcodeModel::where('user_id',Auth::user()->id)->get();
         }
 
         return view('qrcodes.index')

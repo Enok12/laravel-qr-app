@@ -1,5 +1,20 @@
 {{-- All User should have Access to this link --}}
 <li class="nav-item">
+    <a href="{{ route('users.show',[Auth::user()->id]) }}"
+       class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+        <p>Profile</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ route('accounts.show') }}"
+       class="nav-link {{ Request::is('accounts*') ? 'active' : '' }}">
+        <p>My Accounts</p>
+    </a>
+</li>
+
+
+<li class="nav-item">
     <a href="{{ route('transactions.index') }}"
        class="nav-link {{ Request::is('transactions*') ? 'active' : '' }}">
         <p>Transactions</p>
@@ -24,6 +39,21 @@
             <p>Roles</p>
         </a>
     </li>
+
+    <li class="nav-item">
+        <a href="{{ route('accounts.index') }}"
+           class="nav-link {{ Request::is('accounts*') ? 'active' : '' }}">
+            <p>Accounts</p>
+        </a>
+    </li>
+    
+    
+    <li class="nav-item">
+        <a href="{{ route('accountHistories.index') }}"
+           class="nav-link {{ Request::is('accountHistories*') ? 'active' : '' }}">
+            <p>Account Histories</p>
+        </a>
+    </li>
 @endif
 
 {{-- Admin --}}
@@ -37,19 +67,6 @@
 @endif
 
 
-<li class="nav-item">
-    <a href="{{ route('accounts.index') }}"
-       class="nav-link {{ Request::is('accounts*') ? 'active' : '' }}">
-        <p>Accounts</p>
-    </a>
-</li>
 
-
-<li class="nav-item">
-    <a href="{{ route('accountHistories.index') }}"
-       class="nav-link {{ Request::is('accountHistories*') ? 'active' : '' }}">
-        <p>Account Histories</p>
-    </a>
-</li>
 
 

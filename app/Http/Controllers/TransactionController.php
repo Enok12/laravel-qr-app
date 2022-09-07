@@ -35,7 +35,7 @@ class TransactionController extends AppBaseController
         if(Auth::user()->role_id < 3){
             $transactions = $this->transactionRepository->all();
         }else{
-            $transactions = Transaction::where('user_id',Auth::user()->id);
+            $transactions = Transaction::where('user_id',Auth::user()->id)->get();
         }
 
         return view('transactions.index')
