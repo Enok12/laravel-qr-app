@@ -43,6 +43,8 @@ Route::group(['middleware' => 'checkmoderator'],function(){
 
 //Only Admins
 Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('checkadmin');
+Route::post('/accounts/apply_for_payout',[App\Http\Controllers\AccountsController::class, 'apply_for_payout'])->name('accounts.apply_for_payout');
+Route::post('/accounts/mark_as_paid',[App\Http\Controllers\AccountsController::class, 'mark_as_paid'])->name('accounts.mark_as_paid');
 
 });
 
