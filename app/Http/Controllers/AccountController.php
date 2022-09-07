@@ -9,6 +9,10 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Auth;
+use App\Models\Account;
+use App\Models\AccountHistory;
+
 
 class AccountController extends AppBaseController
 {
@@ -156,5 +160,68 @@ class AccountController extends AppBaseController
         Flash::success('Account deleted successfully.');
 
         return redirect(route('accounts.index'));
+    }
+
+    public function apply_for_payout(Request $request){
+
+        $account = $this->accountRepository->find($request->input('account_id'));
+
+        if (empty($account)) {
+            Flash::error('Account not found');
+
+            return redirect()->back();
+        }
+
+        if(Auth::user()->id != $account->user_id){
+            Flash::error('You cannot perform this operation for an account that is not yours');
+            return redirect()->back();
+
+        }
+
+        Account::where('id',$account->id)->update([
+            'applied_for_payout'=>'1',
+            'paid'=>'0',
+            'last_date_applied' => date()
+        ]);
+
+        AccountHistory::create([
+            'user_id' => Auth::user()->id,
+            'account_id'=> $account->id,
+            'message' => 'Payout Request initiated by Account Owner'
+        ]);
+
+        Flash::success('Application submitted successfully');
+        return redirect()->back();
+    }
+
+    public function mark_as_paid(Request $request){
+        $account = $this->accountRepository->find($request->input('account_id'));
+
+        if (empty($account)) {
+            Flash::error('Account not found');
+
+            return redirect()->back();
+        }
+
+        if(Auth::user()->role_id > 2 ){
+            Flash::error('Admins only can perform this action');
+            return redirect()->back();
+
+        }
+
+        Account::where('id',$account->id)->update([
+            'applied_for_payout'=>'0',
+            'paid'=>'1',
+            'last_date_paid' => date()
+        ]);
+
+        AccountHistory::create([
+            'user_id' => $account->user_id,
+            'account_id'=> $account->id,
+            'message' => 'Payment Approved by Admin :'.Auth::user()->id
+        ]);
+
+        Flash::success('Account marked as PAID successfully');
+        return redirect()->back();
     }
 }

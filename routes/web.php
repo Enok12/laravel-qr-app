@@ -43,8 +43,18 @@ Route::group(['middleware' => 'checkmoderator'],function(){
 
 //Only Admins
 Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('checkadmin');
-Route::post('/accounts/apply_for_payout',[App\Http\Controllers\AccountsController::class, 'apply_for_payout'])->name('accounts.apply_for_payout');
-Route::post('/accounts/mark_as_paid',[App\Http\Controllers\AccountsController::class, 'mark_as_paid'])->name('accounts.mark_as_paid');
+Route::post('/accounts/apply_for_payout',[App\Http\Controllers\AccountController::class, 'apply_for_payout'])->name('accounts.apply_for_payout');
+Route::post('/accounts/mark_as_paid',[App\Http\Controllers\AccountController::class, 'mark_as_paid'])->name('accounts.mark_as_paid')->middleware('checkmoderator');
+
+Route::get('/accounts',[App\Http\Controllers\AccountController::class, 'index'])
+->name('accounts.index')->middleware('checkmoderator');
+
+Route::get('/accounts/create',[App\Http\Controllers\AccountController::class, 'create'])
+->name('accounts.create')->middleware('checkadmin');
+
+Route::get('/accountHistories/create',[App\Http\Controllers\AccountHistoryController::class, 'create'])
+->name('accountHistories.create')->middleware('checkadmin');
+
 
 });
 

@@ -65,7 +65,7 @@ class AccountHistory extends Model
 
      //Get account associated with the account history
      public function user(){
-        return $this->hasOne(Account::class);
+        return $this->belongsTo(User::class);
 
     }
 

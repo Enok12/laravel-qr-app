@@ -6,6 +6,7 @@
         <th>Balance</th>
         <th>Total Credit</th>
         <th>Total Debit</th>
+        <th>Status</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
@@ -22,6 +23,14 @@
             <td>Rs. {{ number_format($account->balance) }}</td>
             <td>Rs. {{  number_format($account->total_credit) }}</td>
             <td>Rs. {{  number_format($account->total_debit) }}</td>
+            <td>
+                @if($account->applied_for_payout == 1)
+                    Payment Pending
+                @elseif($account->paid == 1)
+                    Paid
+                @endif
+            </td>
+
                 <td width="120">
                     <div class='btn-group'>
                 
