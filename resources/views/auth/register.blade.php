@@ -38,7 +38,7 @@
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Sign Up</p>
 
             <form method="post" action="{{ route('register') }}">
                 @csrf
@@ -64,7 +64,7 @@
                            name="email"
                            value="{{ old('email') }}"
                            class="form-control @error('email') is-invalid @enderror"
-                           placeholder="Email">
+                           placeholder="Email" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -103,7 +103,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                            <input type="checkbox" id="agreeTerms" name="terms" value="agree" required>
                             <label for="agreeTerms">
                                 I agree to the <a href="#">terms</a>
                             </label>
