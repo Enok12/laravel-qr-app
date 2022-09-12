@@ -30,7 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Only logged in users can view the below
 Route::group(['middleware' => 'auth'],function(){
 
-Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class);
+Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class)->except(['show']);
 Route::resource('transactions', App\Http\Controllers\TransactionController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
 Route::resource('accounts', App\Http\Controllers\AccountController::class)->except(['show']);
@@ -61,4 +61,4 @@ Route::get('/accountHistories/create',[App\Http\Controllers\AccountHistoryContro
 
 });
 
-
+Route::get('/qrcodes/{id}',[App\Http\Controllers\QrcodeController::class, 'show'])->name('qrcodes.show');
