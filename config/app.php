@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         LaravelQRCode\Providers\QRCodeServiceProvider::class,
+        Unicodeveloper\Paystack\PaystackServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,7 +234,8 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
-        'QRCode' => LaravelQRCode\Facades\QRCode::class, 
+        'QRCode' => LaravelQRCode\Facades\QRCode::class,
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class, 
 
     ],
 

@@ -67,7 +67,45 @@
         {!! Form::label('qrcode_path', 'Scan QRCode and Pay Path:') !!}<br>
         <img src="{{ asset($qrcode->qrcode_path) }}" alt="">
     </div>
-</div>
+
+
+    <?php
+// more details https://paystack.com/docs/payments/multi-split-payments/#dynamic-splits
+
+$split = [
+   "type" => "percentage",
+   "currency" => "KES",
+   "subaccounts" => [
+    [ "subaccount" => "ACCT_li4p6kte2dolodo", "share" => 10 ],
+    [ "subaccount" => "ACCT_li4p6kte2dolodo", "share" => 30 ],
+   ],
+   "bearer_type" => "all",
+   "main_account_share" => 70
+];
+?>
+
+                        <form method="POST" role="form" class="col-md-6" action="{{ route('show_payments_page') }}">
+                            {{ csrf_field() }}
+                                <div class="form-group">
+                                    @if(Auth::guest())
+                                    {{-- Only logged out users --}}
+                                        <label for="email">Enter Your Email</label>
+                                        <input type="text" name="email" required class="form-control" placeholder="Youremail@gmail.com"> 
+                                </div>
+                                @else
+                                <input type="hidden" name="email" value={{ Auth::user()->email }}> {{-- required --}}
+
+                                @endif
+                                <input type="hidden" name = "qrcode_id" value="{{ $qrcode->id }}">
+                                    <p>
+                                        <button class="btn btn-success btn-lg btn-block" type="submit" value="Pay Now!">
+                                            <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
+                                        </button>
+                                    </p>
+                                
+                            </div>
+                        </form>
+                    
 
 @if(!Auth::guest() && ($qrcode->user_id == Auth::user()->id || Auth::user()->role_id < 3))
 

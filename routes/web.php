@@ -62,3 +62,7 @@ Route::get('/accountHistories/create',[App\Http\Controllers\AccountHistoryContro
 });
 
 Route::get('/qrcodes/{id}',[App\Http\Controllers\QrcodeController::class, 'show'])->name('qrcodes.show');
+Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+Route::get('/payment/callback',[App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
+Route::post('/qrcodes/show_payments_page',[App\Http\Controllers\QrcodeController::class, 'show_payments_page'])->name('show_payments_page');
+

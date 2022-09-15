@@ -12,6 +12,8 @@ use Response;
 use QRCode;
 use Auth;
 use App\Models\Qrcode as QrcodeModel;
+use App\Models\User;
+use App\Models\Transaction;
 
 class QrcodeController extends AppBaseController
 {
@@ -179,5 +181,37 @@ class QrcodeController extends AppBaseController
         Flash::success('Qrcode deleted successfully.');
 
         return redirect(route('qrcodes.index'));
+    }
+
+    public function show_payments_page(Request $request){
+        $input = $request->all();
+       
+        $input['email'];
+
+        $user = User::where('email', $input['email'])->first();
+
+        if(empty($user)){
+
+           $user = User::create([
+                'name' => $input['email'],
+                'email' => $data['email'],
+                'password' => Hash::make($input['email']),
+            ]);
+
+        }
+
+        
+
+        $qrcode = QrcodeModel::where('id',$input['qrcode_id'])->first();
+        $transaction = Transaction::create([
+            'user_id' => $user->id,
+            'qr_code_id' => $qrcode->id,
+            'status' => "Iniated",
+            'qrcode_owner_id' => $qrcode->user_id,
+            'payment_method' => "Paystack/card",
+            'amount' => $qrcode->amount,
+        ]);
+
+        return view('qrcodes.paystack-form',['qrcode' => $qrcode,'user'=>$user,'transaction'=>$transaction]);
     }
 }
