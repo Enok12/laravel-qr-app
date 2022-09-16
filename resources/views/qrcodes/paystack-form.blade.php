@@ -4,11 +4,14 @@
             
             <input type="hidden" name="email" value="enokdilshan115@gmail.com"> {{-- required --}}
             <input type="hidden" name="orderID" value= {{ $transaction->id }}>
-            <input type="hidden" name="amount" value={{ $qrcode->amount }}> {{-- required in kobo --}}
+            <input type="hidden" name="amount" value={{ $qrcode->amount*100 }}> {{-- required in kobo --}}
             <input type="hidden" name="quantity" value="1">
             <input type="hidden" name="currency" value="ZAR">
             @if(!Auth::guest())
-                <input type="hidden" name="metadata" value="{{ json_encode($array = ['buyer_user_id' =>  $user->id,'buyer_user_email'=> $user->email]) }}" > 
+                <input type="hidden" name="metadata" value="{{ json_encode($array = ['buyer_user_id' =>  $user->id,
+                'buyer_user_email'=> $user->email,
+                'qrcode_id'=>$qrcode->id,
+                'transaction_id' => $transaction->id]) }}" > 
             @endif
             <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
 

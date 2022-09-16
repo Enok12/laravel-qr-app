@@ -33,9 +33,11 @@ class TransactionController extends AppBaseController
     public function index(Request $request)
     {
         if(Auth::user()->role_id < 3){
+            Flash::success('Transactions by all Users');
             $transactions = $this->transactionRepository->all();
         }else{
-            $transactions = Transaction::where('user_id',Auth::user()->id)->get();
+            Flash::success('My Transactions');
+            $transactions = Transaction::where('user_id',Auth::user()->id)->latest()->get();
         }
 
         return view('transactions.index')
