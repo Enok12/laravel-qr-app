@@ -143,6 +143,11 @@
         integrity="sha512-DAc/LqVY2liDbikmJwUS1MSE3pIH0DFprKHZKPcJC7e3TtAOzT55gEMTleegwyuIWgCfOPOM8eLbbvFaG9F/cA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+        
+
 <script>
     $(function () {
         bsCustomFileInput.init();
@@ -151,6 +156,10 @@
     $("input[data-bootstrap-switch]").each(function () {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
+
+    $(document).ready( function () {
+    $('table').DataTable();
+    } );
 </script>
 
 @stack('third_party_scripts')
