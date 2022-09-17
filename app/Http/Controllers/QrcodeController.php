@@ -207,7 +207,7 @@ class QrcodeController extends AppBaseController
             'user_id' => $user->id,
             'qr_code_id' => $qrcode->id,
             'status' => "Iniated",
-            'qrcode_owner_id' => $qrcode->user_id,
+            'qr_code_owner' => $qrcode->user_id,
             'payment_method' => "Paystack/card",
             'amount' => $qrcode->amount,
         ]);

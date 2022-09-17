@@ -31,7 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => 'auth'],function(){
 
 Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class)->except(['show']);
-Route::resource('transactions', App\Http\Controllers\TransactionController::class);
+Route::resource('transactions', App\Http\Controllers\TransactionController::class)->except(['show']);
 Route::resource('users', App\Http\Controllers\UserController::class);
 Route::resource('accounts', App\Http\Controllers\AccountController::class)->except(['show']);
 
@@ -61,8 +61,9 @@ Route::get('/accountHistories/create',[App\Http\Controllers\AccountHistoryContro
 
 });
 
+//Routes Accessbile when logged out
 Route::get('/qrcodes/{id}',[App\Http\Controllers\QrcodeController::class, 'show'])->name('qrcodes.show');
 Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
 Route::get('/payment/callback',[App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
 Route::post('/qrcodes/show_payments_page',[App\Http\Controllers\QrcodeController::class, 'show_payments_page'])->name('show_payments_page');
-
+Route::get('/transactions/{id}',[App\Http\Controllers\TransactionController::class, 'show'])->name('transactions.show');

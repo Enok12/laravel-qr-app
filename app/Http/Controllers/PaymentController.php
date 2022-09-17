@@ -43,7 +43,8 @@ class PaymentController extends Controller
      * @return void
      */
     public function handleGatewayCallback()
-    {
+    {   
+        
         $paymentDetails = Paystack::getPaymentData();
 
         if($paymentDetails['data']['status'] != 'success'){
@@ -68,10 +69,10 @@ class PaymentController extends Controller
         ->update([
             'Status'=>'Completed'
         ]);
-
+        
         //get Buyer Details
-        $buyer = User::find('id',$paymentDetails['data']['metadata']['buyer_user_id']);
-
+        $buyer = User::find($paymentDetails['data']['metadata']['buyer_user_id']);
+        
         //Update Qrcode Owner Account and Account Hisotry
         $qrCodeOwneraccount = Account::where('user_id',$qrcode->user_id)->first();
 
