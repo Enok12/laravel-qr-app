@@ -1,23 +1,23 @@
 
-    {!! Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control']) !!}
+    {!! Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control','required']) !!}
 
 
 <!-- Website Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('website', 'Website:') !!}
-    {!! Form::text('website', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'placeholder'=> 'https://examplme.com']) !!}
+    {!! Form::text('website', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'placeholder'=> 'https://examplme.com','required']) !!}
 </div>
 
 <!-- Company Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('company_name', 'Company Name:') !!}
-    {!! Form::text('company_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::text('company_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
 </div>
 
 <!-- Product Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('product_name', 'Product Name:') !!}
-    {!! Form::text('product_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::text('product_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
 </div>
 
 <!-- Product Url Field -->
@@ -41,14 +41,14 @@
 <!-- Amount Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('amount', 'Amount(Rs):') !!}
-    {!! Form::number('amount', null, ['class' => 'form-control']) !!}
+    {!! Form::number('amount', null, ['class' => 'form-control','required']) !!}
 </div>
 
 <!-- Status Field -->
 <div class="form-group col-sm-6">
     <div class="form-check">
         {!! Form::hidden('status', 0, ['class' => 'form-check-input']) !!}
-        {!! Form::checkbox('status', '1', null, ['class' => 'form-check-input']) !!}
+        {!! Form::checkbox('status', '1', '1', ['class' => 'form-check-input']) !!}
         {!! Form::label('status', 'Status', ['class' => 'form-check-label']) !!}
     </div>
 </div>

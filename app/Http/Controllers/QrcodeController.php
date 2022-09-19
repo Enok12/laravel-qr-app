@@ -14,6 +14,9 @@ use Auth;
 use App\Models\Qrcode as QrcodeModel;
 use App\Models\User;
 use App\Models\Transaction;
+use App\Http\Resources\Qrcode as QrcodeResource;
+use App\Http\Resources\QrcodeCollection as QrcodeCollection;
+
 
 class QrcodeController extends AppBaseController
 {
@@ -40,6 +43,8 @@ class QrcodeController extends AppBaseController
         }else{
             $qrcodes = QrcodeModel::where('user_id',Auth::user()->id)->get();
         }
+
+        // return QrcodeResource::collection($qrcodes);
 
         return view('qrcodes.index')
             ->with('qrcodes', $qrcodes);

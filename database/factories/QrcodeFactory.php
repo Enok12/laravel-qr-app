@@ -22,13 +22,15 @@ class QrcodeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->randomDigitNotNull,
-        'website' => $this->faker->word,
-        'company_name' => $this->faker->word,
-        'product_name' => $this->faker->word,
-        'product_url' => $this->faker->word,
-        'callback_url' => $this->faker->word,
-        'qrcode_path' => $this->faker->word,
+            'user_id' => function(){
+                return App\Models\User::all()->random();
+            },
+        'website' => $this->faker->url,
+        'company_name' => $this->faker->name,
+        'product_name' => $this->faker->sentence(rand(4,8),true),
+        'product_url' => $this->faker->url,
+        'callback_url' => $this->faker->url,
+        'qrcode_path' => $this->faker->url,
         'amount' => $this->faker->randomDigitNotNull,
         'status' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),

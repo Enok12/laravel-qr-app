@@ -23,7 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-        'role_id' => $this->faker->word,
+        'role_id' => '1',
         'email' => $this->faker->word,
         'email_verified_at' => $this->faker->date('Y-m-d H:i:s'),
         'password' => $this->faker->word,
