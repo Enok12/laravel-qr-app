@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Qrcode;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QrcodeFactory extends Factory
@@ -23,7 +24,7 @@ class QrcodeFactory extends Factory
     {
         return [
             'user_id' => function(){
-                return App\Models\User::all()->random();
+                return User::all()->random();
             },
         'website' => $this->faker->url,
         'company_name' => $this->faker->name,
@@ -32,7 +33,7 @@ class QrcodeFactory extends Factory
         'callback_url' => $this->faker->url,
         'qrcode_path' => $this->faker->url,
         'amount' => $this->faker->randomDigitNotNull,
-        'status' => $this->faker->word,
+        'status' => 1,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];

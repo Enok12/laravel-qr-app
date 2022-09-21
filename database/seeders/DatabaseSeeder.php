@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         \App\Models\Qrcode::factory(50)->create();
         \App\Models\Transaction::factory(50)->create();
+        \App\Models\Account::factory(10)->create();
+        \App\Models\AccountHistory::factory(50)->create();
+
+
 
 
     }

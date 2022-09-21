@@ -4,9 +4,15 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+
+
 
 class UserFactory extends Factory
 {
+   
     /**
      * The name of the factory's corresponding model.
      *
@@ -21,13 +27,16 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $PasswordHash = Hash::make('Enok1020');
+        $remembertoken = Str::random(10);
+
         return [
-            'name' => $this->faker->word,
-        'role_id' => '1',
-        'email' => $this->faker->word,
+            'name' => $this->faker->name,
+        'role_id' => $this->faker->numberBetween(1,4),
+        'email' => $this->faker->unique()->safeEmail,
         'email_verified_at' => $this->faker->date('Y-m-d H:i:s'),
-        'password' => $this->faker->word,
-        'remember_token' => $this->faker->word,
+        'password' => $PasswordHash ,
+        'remember_token' => $remembertoken ,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
